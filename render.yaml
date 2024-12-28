@@ -6,7 +6,7 @@ services:
     dockerfilePath: ./Dockerfile
     envVars:
       - key: DATABASE_URL
-        sync: false  # Set to false since the database URL will be provided automatically by Render.
+        sync: false  # Provided by Render automatically for the database
       - key: DJANGO_SECRET_KEY
         generator: secret
     autoDeploy: true
