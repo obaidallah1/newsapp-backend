@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 import dj_database_url
+from dotenv import load_dotenv
 
 # Base directory
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -61,16 +62,19 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 # CORS configuration
 CORS_ALLOW_ALL_ORIGINS = True  # Allow all CORS in production (adjust as needed)
-
+load_dotenv()
 # Database configuration
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',  # or 'django.db.backends.postgresql_psycopg2'
-        'NAME': os.getenv('dbname'),
-        'USER': os.getenv('user'),
-        'PASSWORD': os.getenv('password'),
-        'HOST': os.getenv('host'),
-        'PORT': os.getenv('port', 5432),  # Default port for PostgreSQL is 5432
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST', 'aws-0-us-west-1.pooler.supabase.com'),
+        'PORT': os.getenv('DB_PORT', 5432),  # Default PostgreSQL port is 5432
+        'OPTIONS': {
+            'sslmode': 'require',  # Ensure SSL is enabled for Supabase
+        },
     }
 }
 
