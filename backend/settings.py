@@ -81,8 +81,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # React app URL
-    "http://0.0.0.0:3000"
+    "*", 
 ]
 DATABASES = {
     'default': dj_database_url.config(
