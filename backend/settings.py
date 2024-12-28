@@ -66,11 +66,11 @@ CORS_ALLOW_ALL_ORIGINS = True  # Allow all CORS in production (adjust as needed)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',  # or 'django.db.backends.postgresql_psycopg2'
-        'NAME': os.getenv('DATABASE_NAME'),
-        'USER': os.getenv('DATABASE_USER'),
-        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
-        'HOST': os.getenv('DATABASE_HOST'),
-        'PORT': os.getenv('DATABASE_PORT', 5432),  # Default port for PostgreSQL is 5432
+        'NAME': os.getenv('dbname'),
+        'USER': os.getenv('user'),
+        'PASSWORD': os.getenv('password'),
+        'HOST': os.getenv('host'),
+        'PORT': os.getenv('port', 5432),  # Default port for PostgreSQL is 5432
     }
 }
 

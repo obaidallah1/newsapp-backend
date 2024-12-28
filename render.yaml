@@ -11,11 +11,3 @@ services:
         generator: secret
     autoDeploy: true
 
-  - name: postgres-db
-    type: database
-    plan: free
-    databaseName: postgres
-    user: postgres
-    password: postgres
-    region: oregon
-    engine: postgres
