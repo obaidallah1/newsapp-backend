@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-jl9ag-^u8li^fpue3&dx2@dfzcbt2yb5v7@!7sa21)#7**d%%b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -80,9 +80,9 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-CORS_ALLOWED_ORIGINS = [
-    "*", 
-]
+# CORS settings
+CORS_ALLOW_ALL_ORIGINS = True
+
 DATABASES = {
     'default': dj_database_url.config(
         default=os.getenv("DATABASE_URL", "postgres://postgres:postgres@localhost:5432/postgres"),
