@@ -64,10 +64,14 @@ CORS_ALLOW_ALL_ORIGINS = True  # Allow all CORS in production (adjust as needed)
 
 # Database configuration
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv("DATABASE_URL"),  # Render injects this
-        conn_max_age=600,  # Persistent connection pooling
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',  # or 'django.db.backends.postgresql_psycopg2'
+        'NAME': os.getenv('DATABASE_NAME'),
+        'USER': os.getenv('DATABASE_USER'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+        'HOST': os.getenv('DATABASE_HOST'),
+        'PORT': os.getenv('DATABASE_PORT', 5432),  # Default port for PostgreSQL is 5432
+    }
 }
 
 # Password validation
