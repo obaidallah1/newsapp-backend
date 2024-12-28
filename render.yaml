@@ -1,0 +1,21 @@
+services:
+  - name: django-backend
+    type: web
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: DATABASE_URL
+        sync: false  # Set to false since the database URL will be provided automatically by Render.
+      - key: DJANGO_SECRET_KEY
+        generator: secret
+    autoDeploy: true
+
+  - name: postgres-db
+    type: database
+    plan: free
+    databaseName: postgres
+    user: postgres
+    password: postgres
+    region: oregon
+    engine: postgres

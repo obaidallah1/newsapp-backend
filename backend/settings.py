@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 
+import dj_database_url
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -83,14 +85,10 @@ CORS_ALLOWED_ORIGINS = [
     "http://0.0.0.0:3000"
 ]
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_DB', 'postgres'),  # Use the environment variable or default to 'postgres'
-        'USER': os.environ.get('POSTGRES_USER', 'postgres'),  # Use the environment variable or default to 'postgres'
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'postgres'),  # Use the environment variable or default to 'postgres'
-        'HOST': os.environ.get('DB_HOST', 'localhost'),  # Use the environment variable or default to 'localhost'
-        'PORT': '5432',  # Default PostgreSQL port
-    }
+    'default': dj_database_url.config(
+        default=os.getenv("DATABASE_URL", "postgres://postgres:postgres@localhost:5432/postgres"),
+        conn_max_age=600,
+    )
 }
 
 # Password validation
